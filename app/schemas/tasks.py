@@ -1,4 +1,5 @@
 from pydantic import BaseModel, field_validator
+
 class Task(BaseModel):
     text: str
     is_done: bool = False

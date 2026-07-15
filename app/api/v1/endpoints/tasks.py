@@ -4,8 +4,7 @@ from fastapi import APIRouter, HTTPException, Query
 from fastapi_pagination import Page, paginate
 from fastapi_pagination.customization import CustomizedPage, UseParamsFields
 
-from app.test_data.tasks import tasks
-from app.schemas.task import Task
+from app.schemas.tasks import Task
 
 router = APIRouter(
     prefix="/tasks",

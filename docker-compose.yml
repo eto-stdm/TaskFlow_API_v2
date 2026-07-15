@@ -1,5 +1,5 @@
 services:
-  api:
+  app:
     build: .
     container_name: taskflowapi
     ports:
@@ -8,4 +8,21 @@ services:
       - .:/app
     environment:
       - PYTHONPATH=/app
+      - DATABASE_URL=postgresql://tf_user:tf_password@postgres:5432/tf_db
+    depends_on:
+      - postgres
     restart: always
+
+  postgres:
+    image: postgres:18.4-alpine3.24
+    environment:
+      POSTGRES_USER: tf_user
+      POSTGRES_PASSWORD: tf_password
+      POSTGRES_DB: tf_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql
+
+volumes:
+  pg_data:

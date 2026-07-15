@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException
 
-from app.test_data.projects import projects
-from app.schemas.project import Project
+from app.schemas.projects import Project
 
 router = APIRouter(
     prefix="/projects",
