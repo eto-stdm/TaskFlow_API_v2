@@ -1,24 +1,19 @@
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, Field
+from typing import Optional
+from datetime import datetime
 
-class Project(BaseModel):
-    name: str
-    description: str = None
-    participants: list[str]
+class ProjectBase(BaseModel):
+    name: str = Field(max_length=50)
+    description: Optional[str] = Field(None, max_length=200)
 
-    @field_validator("name")
-    def validate_name(cls, value):
-        if len(value) > 50:
-            raise ValueError(f"name должен быть меньше 50 символов. Текущее значение: {value}")
-        return value
+class ProjectCreate(ProjectBase):
+    owner_id: int
 
-    @field_validator("description")
-    def validate_description(cls, value):
-        if len(value) > 200:
-            raise ValueError(f"description должен быть меньше 200 символов. Текущее значение: {value}")
-        return value
+class ProjectUpdate(BaseModel):
+    name: Optional[str] = None
+    description: Optional[str] = None
 
-    @field_validator("participants")
-    def validate_participants(cls, value):
-        if len(value) == 0:
-            raise ValueError("participants должен содержать хотя бы одного участника")
-        return value
+class ProjectResponse(ProjectBase):
+    id: int
+    owner_id: int
+    created_at: datetime
