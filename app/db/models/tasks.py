@@ -16,3 +16,4 @@ class Task(Base):
     project_id: Mapped[int] = mapped_column(ForeignKey("projects.id"), nullable=False)
 
     project = relationship("Project", back_populates="tasks")
+    attachments = relationship("Attachment", back_populates="tasks")

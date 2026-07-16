@@ -1,9 +1,10 @@
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+
 
 class TaskBase(BaseModel):
-    text: str
+    text: str = Field(max_length=100)
     project_id: int
 
 class TaskCreate(TaskBase):

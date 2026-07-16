@@ -25,3 +25,4 @@ class User(Base):
     )
 
     owner = relationship("Project")
+    attachments = relationship("Attachment", back_populates="uploaded_by_user")
