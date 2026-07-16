@@ -13,6 +13,6 @@ class Task(Base):
     text: Mapped[str] = mapped_column(String(100), index=True, nullable=False)
     is_done: Mapped[bool] = mapped_column(default=False)
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
-    project_id: Mapped[int] = mapped_column(ForeignKey("Project.id"), nullable=False)
+    project_id: Mapped[int] = mapped_column(ForeignKey("projects.id"), nullable=False)
 
     project = relationship("Project", back_populates="tasks")

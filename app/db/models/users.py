@@ -2,7 +2,7 @@ from datetime import datetime
 
 from sqlalchemy import String
 from sqlalchemy.sql import func
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.schema import CheckConstraint
 
 from app.db.base import Base
@@ -23,3 +23,5 @@ class User(Base):
         CheckConstraint('char_length(password) > 9',
                         name='password_min_length'),
     )
+
+    owner = relationship("Project")
