@@ -15,5 +15,5 @@ class Project(Base):
     description: Mapped[str] = mapped_column(String(200), nullable=True)
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
 
-    tasks = relationship("Task", back_populates="project")
-    owner = relationship("User", foreign_keys=[owner_id])
+    tasks = relationship("Task", back_populates="project", cascade="all, delete-orphan")
+    owner = relationship("User", back_populates="owner", cascade="all, delete-orphan")

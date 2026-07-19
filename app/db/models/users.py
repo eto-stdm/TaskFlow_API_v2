@@ -24,5 +24,5 @@ class User(Base):
                         name='password_min_length'),
     )
 
-    owner = relationship("Project")
-    attachments = relationship("Attachment", back_populates="uploaded_by_user")
+    owner = relationship("Project", back_populates="owner", cascade="all, delete-orphan")
+    attachments = relationship("Attachment", back_populates="uploaded_by_user", cascade="all, delete-orphan")

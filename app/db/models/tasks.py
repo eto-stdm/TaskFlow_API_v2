@@ -15,5 +15,5 @@ class Task(Base):
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
     project_id: Mapped[int] = mapped_column(ForeignKey("projects.id"), nullable=False)
 
-    project = relationship("Project", back_populates="tasks")
-    attachments = relationship("Attachment", back_populates="tasks")
+    project = relationship("Project", back_populates="tasks", cascade="all, delete-orphan")
+    attachments = relationship("Attachment", back_populates="tasks", cascade="all, delete-orphan")

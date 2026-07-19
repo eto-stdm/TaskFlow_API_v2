@@ -19,5 +19,5 @@ class Attachment(Base):
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
     uploaded_by_user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
 
-    task = relationship("Task", back_populates="attachments")
-    uploaded_by_user = relationship("User", back_populates="attachments")
+    task = relationship("Task", back_populates="attachments", cascade="all, delete-orphan")
+    uploaded_by_user = relationship("User", back_populates="attachments", cascade="all, delete-orphan")

@@ -4,7 +4,7 @@ class Settings(BaseSettings):
     DB_URL: str
 
     class Config:
-        env_file = "app/.env"
+        env_file = "app/.env", ".env.example"
         env_file_encoding = "utf-8"
 
 settings = Settings()
