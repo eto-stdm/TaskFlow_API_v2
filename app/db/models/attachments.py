@@ -12,7 +12,7 @@ class Attachment(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     task_id: Mapped[int] = mapped_column(ForeignKey("tasks.id"), nullable=False)
     file_name: Mapped[str] = mapped_column(String(255), index=True, nullable=False)
-    file_key: Mapped[str] = mapped_column(String(500), index=True, nullable=False, unique=True)
+    file_key: Mapped[str] = mapped_column(String(500), nullable=False, unique=True)
     content_type: Mapped[str] = mapped_column(String(100), nullable=False)
     size: Mapped[int] = mapped_column(nullable=False)
     bucket_name: Mapped[str] = mapped_column(String(255), nullable=False)
